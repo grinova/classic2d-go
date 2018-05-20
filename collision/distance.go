@@ -1,7 +1,7 @@
 package collision
 
 import (
-	"physics"
+	"github.com/grinova/classic2d-go/physics"
 )
 
 // Distance - расстояние между телами

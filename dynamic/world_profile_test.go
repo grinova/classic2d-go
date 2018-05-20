@@ -3,10 +3,11 @@ package dynamic
 import (
 	"math"
 	"math/rand"
-	. "physics"
-	. "physics/shapes"
 	"testing"
-	. "vmath"
+
+	. "github.com/grinova/classic2d-go/physics"
+	. "github.com/grinova/classic2d-go/physics/shapes"
+	. "github.com/grinova/classic2d-go/vmath"
 )
 
 var w = CreateWorld()

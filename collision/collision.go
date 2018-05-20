@@ -1,8 +1,8 @@
 package collision
 
 import (
-	"physics"
-	"settings"
+	"github.com/grinova/classic2d-go/physics"
+	"github.com/grinova/classic2d-go/settings"
 )
 
 // TestOverlap проверяет пересечение тел

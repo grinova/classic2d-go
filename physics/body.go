@@ -1,8 +1,8 @@
 package physics
 
 import (
-	"physics/shapes"
-	"vmath"
+	"github.com/grinova/classic2d-go/physics/shapes"
+	"github.com/grinova/classic2d-go/vmath"
 )
 
 // BodyType - тип тела

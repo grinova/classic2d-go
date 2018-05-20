@@ -1,8 +1,8 @@
 package dynamic
 
 import (
-	"collision"
-	"physics"
+	"github.com/grinova/classic2d-go/collision"
+	"github.com/grinova/classic2d-go/physics"
 )
 
 // Contacts - контакты

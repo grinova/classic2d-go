@@ -1,7 +1,7 @@
 package shapes
 
 import (
-	"vmath"
+	"github.com/grinova/classic2d-go/vmath"
 )
 
 // MassData - данные массы

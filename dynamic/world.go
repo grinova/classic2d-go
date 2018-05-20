@@ -2,8 +2,9 @@ package dynamic
 
 import (
 	"math"
-	"physics"
-	"vmath"
+
+	"github.com/grinova/classic2d-go/physics"
+	"github.com/grinova/classic2d-go/vmath"
 )
 
 type worldFlags int
