@@ -23,7 +23,7 @@ type Body struct {
 	Force           vmath.Vec2
 	Torque          float64
 	Sweep           vmath.Sweep
-	UserData        string
+	UserData        interface{}
 	massData        shapes.MassData
 	fixture         Fixture
 	xf              vmath.Transform
