@@ -1,8 +1,8 @@
 package dynamic
 
 import (
-	"github.com/grinova/classic2d-go/collision"
-	"github.com/grinova/classic2d-go/physics"
+	"github.com/grinova/classic2d-server/collision"
+	"github.com/grinova/classic2d-server/physics"
 )
 
 // ContactFlags - флаги состояния контакта

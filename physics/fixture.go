@@ -1,7 +1,7 @@
 package physics
 
 import (
-	"github.com/grinova/classic2d-go/physics/shapes"
+	"github.com/grinova/classic2d-server/physics/shapes"
 )
 
 // Fixture - фикстура

@@ -4,8 +4,8 @@ import (
 	"math"
 	"time"
 
-	"github.com/grinova/classic2d-go/physics"
-	"github.com/grinova/classic2d-go/vmath"
+	"github.com/grinova/classic2d-server/physics"
+	"github.com/grinova/classic2d-server/vmath"
 )
 
 type worldFlags int

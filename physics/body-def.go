@@ -1,7 +1,7 @@
 package physics
 
 import (
-	"github.com/grinova/classic2d-go/vmath"
+	"github.com/grinova/classic2d-server/vmath"
 )
 
 // BodyDef - орписание тела
