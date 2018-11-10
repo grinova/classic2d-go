@@ -2,6 +2,7 @@ package dynamic
 
 import (
 	"math"
+	"time"
 
 	"github.com/grinova/classic2d-go/physics"
 	"github.com/grinova/classic2d-go/vmath"
@@ -77,8 +78,9 @@ func (w *World) SetContactListener(listener ContactListener) {
 }
 
 // Step - шаг расчета процессов за время time миллисекунд
-func (w *World) Step(time float64) {
-	if time > 100 {
+func (w *World) Step(d time.Duration) {
+	ms := d.Seconds() * 1000
+	if ms > 100 {
 		return
 	}
 	if w.flags&newBodies != 0 {
@@ -86,8 +88,8 @@ func (w *World) Step(time float64) {
 		w.flags &= ^newBodies
 	}
 
-	iterations := math.Floor(time / math.Min(time, 4.0))
-	T := time / (iterations * 1000)
+	iterations := math.Floor(ms / math.Min(ms, 4.0))
+	T := ms / (iterations * 1000)
 	for i := 0.0; i < iterations; i++ {
 		for body := range w.bodies {
 			if body.Type == physics.StaticBody {

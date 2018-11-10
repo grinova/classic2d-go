@@ -4,6 +4,7 @@ import (
 	"math"
 	"math/rand"
 	"testing"
+	"time"
 
 	. "github.com/grinova/classic2d-go/physics"
 	. "github.com/grinova/classic2d-go/physics/shapes"
@@ -17,7 +18,7 @@ func BenchmarkWorld(b *testing.B) {
 	bc := len(world.GetBodies())
 	b.Log("Bodies count = ", bc)
 	for i := 0; i < b.N; i++ {
-		world.Step(16.6)
+		world.Step(time.Second / 60)
 	}
 }
 
