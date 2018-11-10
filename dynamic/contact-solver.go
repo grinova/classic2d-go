@@ -44,8 +44,8 @@ func solveDynamic(bodyA *physics.Body, bodyB *physics.Body) {
 	y := mcB.Y - mcA.Y
 	massRot := vmath.RotFromXY(x, -y).Normalize()
 
-	vA.Rotate(massRot)
-	vB.Rotate(massRot)
+	vA = vA.Rotate(massRot)
+	vB = vB.Rotate(massRot)
 
 	uAx := (mB*(2*vB.X-vA.X) + mA*vA.X) / (mA + mB)
 	uAy := vA.Y
@@ -55,9 +55,9 @@ func solveDynamic(bodyA *physics.Body, bodyB *physics.Body) {
 	uA := vmath.Vec2{X: uAx, Y: uAy}
 	uB := vmath.Vec2{X: uBx, Y: uBy}
 
-	massRot.Inverse()
-	uA.Rotate(massRot)
-	uB.Rotate(massRot)
+	massRot = massRot.Inverse()
+	uA = uA.Rotate(massRot)
+	uB = uB.Rotate(massRot)
 
 	bodyA.LinearVelocity = uA
 	bodyB.LinearVelocity = uB
@@ -76,15 +76,15 @@ func solveStatic(bodyA *physics.Body, bodyB *physics.Body) {
 	y := mcB.Y - mcA.Y
 	massRot := vmath.RotFromXY(x, -y).Normalize()
 
-	vA.Rotate(massRot)
+	vA = vA.Rotate(massRot)
 
 	uAx := -vA.X
 	uAy := vA.Y
 
 	uA := vmath.Vec2{X: uAx, Y: uAy}
 
-	massRot.Inverse()
-	uA.Rotate(massRot)
+	massRot = massRot.Inverse()
+	uA = uA.Rotate(massRot)
 
 	bodyA.LinearVelocity = uA
 }
