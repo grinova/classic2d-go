@@ -5,12 +5,12 @@ import (
 	"github.com/grinova/classic2d-go/physics"
 )
 
-// Flags - флаги состояния контакта
-type Flags int
+// ContactFlags - флаги состояния контакта
+type ContactFlags int
 
 const (
 	// TouchingFlag - соприкосновение происходит
-	TouchingFlag Flags = 1 << (iota + 1)
+	TouchingFlag ContactFlags = 1 << (iota + 1)
 	// WasTouchingFlag - соприкосновение произошло
 	WasTouchingFlag
 )
@@ -19,7 +19,7 @@ const (
 type Contact struct {
 	BodyA *physics.Body
 	BodyB *physics.Body
-	Flags Flags
+	Flags ContactFlags
 }
 
 // Update обновляет контакт в зависимости от его состояния
