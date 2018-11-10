@@ -1,6 +1,0 @@
-{
-  "files.exclude": {
-    "pkg": true,
-  },
-  "go.inferGopath": true
-}
