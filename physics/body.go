@@ -71,6 +71,11 @@ func (b *Body) GetPosition() vmath.Vec2 {
 	return b.xf.Pos
 }
 
+// GetRot возвращает вращение
+func (b *Body) GetRot() vmath.Rot {
+	return b.xf.Rot
+}
+
 // SetFixture создаёт и устанавливает фикстуру
 func (b *Body) SetFixture(def FixtureDef) Fixture {
 	b.fixture = MakeFixture(def)
