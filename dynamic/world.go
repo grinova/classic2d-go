@@ -68,8 +68,8 @@ func (w *World) GetBodies() Bodies {
 }
 
 // GetContactManager возвращает менеджер контактов
-func (w *World) GetContactManager() ContactManager {
-	return w.contactManager
+func (w *World) GetContactManager() *ContactManager {
+	return &w.contactManager
 }
 
 // SetContactListener устанавливает обработчик контактов
