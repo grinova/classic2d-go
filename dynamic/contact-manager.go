@@ -52,14 +52,10 @@ func (cm *ContactManager) Destroy(contact *Contact) {
 
 // FindNewContacts - поиск новых контактов
 func (cm *ContactManager) FindNewContacts() {
-	bodies := cm.world.GetBodies()
-	for bodyA := range bodies {
-		for bodyB := range bodies {
-			if bodyA == bodyB {
-				continue
-			}
-			if collision.TestOverlap(bodyA, bodyB) && !cm.hasContact(bodyA, bodyB) {
-				cm.AddPair(bodyA, bodyB)
+	for curr := cm.world.GetBodies(); curr != nil; curr = curr.Next {
+		for next := curr.Next; next != nil; next = next.Next {
+			if collision.TestOverlap(curr.Body, next.Body) && !cm.hasContact(curr.Body, next.Body) {
+				cm.AddPair(curr.Body, next.Body)
 			}
 		}
 	}

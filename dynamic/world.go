@@ -16,27 +16,24 @@ const (
 	defaultFlags = newBodies
 )
 
-// Bodies - тела
-type Bodies map[*physics.Body]bool
-
 // World - мир
 type World struct {
-	bodies         Bodies
+	bodies         *bodies
 	contactManager ContactManager
 	flags          worldFlags
 }
 
 // CreateWorld создаёт мир
 func CreateWorld() World {
-	world := World{bodies: make(Bodies), flags: defaultFlags}
+	world := World{bodies: &bodies{}, flags: defaultFlags}
 	world.contactManager = CreateContactManager(&world)
 	return world
 }
 
 // ClearForces обнуляет значение действующей силы для всех тел
 func (w *World) ClearForces() {
-	for body := range w.bodies {
-		body.Force = vmath.Vec2{}
+	for list := w.bodies.first; list != nil; list = list.Next {
+		list.Body.Force = vmath.Vec2{}
 	}
 }
 
@@ -44,14 +41,14 @@ func (w *World) ClearForces() {
 func (w *World) CreateBody(def physics.BodyDef) *physics.Body {
 	w.flags |= newBodies
 	body := physics.CreateBody(def)
-	w.bodies[&body] = true
+	w.bodies.add(&body)
 	return &body
 }
 
 // Clear очищает мир
 func (w *World) Clear() {
-	for body := range w.bodies {
-		w.DestroyBody(body)
+	for list := w.bodies.first; list != nil; list = list.Next {
+		w.DestroyBody(list.Body)
 	}
 	w.contactManager.Clear()
 	w.flags = defaultFlags
@@ -59,12 +56,12 @@ func (w *World) Clear() {
 
 // DestroyBody утичтожает тело
 func (w *World) DestroyBody(body *physics.Body) {
-	delete(w.bodies, body)
+	w.bodies.remove(body)
 }
 
 // GetBodies возвращает список всех тел
-func (w *World) GetBodies() Bodies {
-	return w.bodies
+func (w *World) GetBodies() *BodyList {
+	return w.bodies.first
 }
 
 // GetContactManager возвращает менеджер контактов
@@ -91,7 +88,8 @@ func (w *World) Step(d time.Duration) {
 	iterations := math.Floor(ms / math.Min(ms, 4.0))
 	T := ms / (iterations * 1000)
 	for i := 0.0; i < iterations; i++ {
-		for body := range w.bodies {
+		for list := w.bodies.first; list != nil; list = list.Next {
+			body := list.Body
 			if body.Type == physics.StaticBody {
 				continue
 			}
@@ -112,8 +110,8 @@ func (w *World) Step(d time.Duration) {
 		contactSolver := ContactSolver{world: *w}
 		contactSolver.Solve()
 
-		for body := range w.bodies {
-			body.Synchronize()
+		for list := w.bodies.first; list != nil; list = list.Next {
+			list.Body.Synchronize()
 		}
 	}
 

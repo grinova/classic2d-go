@@ -15,8 +15,6 @@ var w = CreateWorld()
 var world = resetWorld(&w)
 
 func BenchmarkWorld(b *testing.B) {
-	bc := len(world.GetBodies())
-	b.Log("Bodies count = ", bc)
 	for i := 0; i < b.N; i++ {
 		world.Step(time.Second / 60)
 	}
