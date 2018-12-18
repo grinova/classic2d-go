@@ -86,6 +86,16 @@ func (b *Body) SetFixture(def FixtureDef) Fixture {
 	return b.fixture
 }
 
+// SetAngle устанавливает угол поворода
+func (b *Body) SetAngle(angle float64) {
+	b.xf.Rot = vmath.RotFromAngle(angle)
+}
+
+// SetPosition устанавливает позицию
+func (b *Body) SetPosition(pos vmath.Vec2) {
+	b.xf.Pos = pos
+}
+
 // SetTorque устанавливает крутящий момент
 func (b *Body) SetTorque(torque float64) {
 	b.Torque = torque
